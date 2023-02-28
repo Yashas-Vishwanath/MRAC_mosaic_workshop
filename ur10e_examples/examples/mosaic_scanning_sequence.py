@@ -36,7 +36,7 @@ BLEND = 0.01
 # reconstruction parameters
 # --------------------------------------------
 SCAN = True
-OUTPUT_DIR = '/home/Term2/Workshop2.2/'
+OUTPUT_DIR = '/home/yashas/Term2/Workshop2.2/'
 
 
 def gen_recon_msg(path: str = OUTPUT_DIR) -> Tuple[StartReconstructionRequest,
