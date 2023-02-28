@@ -19,7 +19,7 @@ SHARD_QUATERNION = [1.0, 0.0, 0.0, 0.0]
 def segment_shards(input_path: str,
                    path_output: str,
                    output: bool = False,
-                   num_shards: int = 9,
+                   num_shards: int = 90,
                    vis: bool = False,
                    ground_plane_threshold: float = 0.008,
                    cluster_eps: float = 0.02,
