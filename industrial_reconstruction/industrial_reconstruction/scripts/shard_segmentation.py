@@ -233,24 +233,34 @@ def segment_shards_cuda(input_path: str,
 
     # compute boundary
     # ----------------
-    # boundaries = []
-    # for cluster in clusters:
+    boundaries = []
+    for idx, cluster in enumerate(clusters):
+        cluster.estimate_normals(radius=0.1, max_nn=30)
+        boundary, mask = cluster.compute_boundary_points(max_nn=30, radius=0.1)
+        # boundary, outlier, pq = segment_plane_t(boundary, 0.002)
+        boundaries.append(boundary)
+
+        cluster_boundary = cluster.select_by_mask(mask).paint_uniform_color(
+            [np.float32(1.0), np.float32(0.0), np.float32(0.0)])
+        cluster = cluster.select_by_mask(mask, invert=True)
+        clusters[idx] = cluster.append(cluster_boundary)
+
     #     cluster.estimate_normals(radius=0.1, max_nn=30)
     #     boundary, mask = cluster.compute_boundary_points(max_nn=30, radius=0.1)
     #     # boundary, outlier, pq = segment_plane_t(boundary, 0.002)
     #     boundaries.append(boundary)
 
-    # if vis:
-    #     boundaries = [boundary.to_legacy().paint_uniform_color([1, 0, 0])
-    #                   for boundary in boundaries]
-    #     o3d.visualization.draw_geometries(boundaries)
+    if vis:
+        boundaries = [boundary.to_legacy().paint_uniform_color([1, 0, 0])
+                      for boundary in boundaries]
+        o3d.visualization.draw_geometries(boundaries)
 
     # plane segmentation
     # ----------------
     cl_planes = []
     outliers = []
     for i, cluster in enumerate(clusters):
-        cl_plane, outlier, l = segment_plane_t(cluster, 0.002)
+        cl_plane, outlier, l = segment_plane_t(cluster, 0.003)
         cl_planes.append(cl_plane)
         outliers.append(outlier)
         if output:
@@ -378,15 +388,15 @@ if __name__ == '__main__':
     #                cluster_plane_threshold=0.002
     #    )
 
-    # segment_shards_cuda(input_path='/home/yashas/Term2/Workshop2.2/02_28_16_14.ply',
-    #                     path_output='/home/yashas/Term2/Workshop2.2/',
-    #                     output=True,
-    #                     num_shards=74,
-    #                     vis=True,
-    #                     ground_plane_threshold=0.008,
-    #                     cluster_eps=0.02,
-    #                     cluster_min_points=300,
-    #                     cluster_plane_threshold=0.002)
+    segment_shards_cuda(input_path='/home/yashas/Term2/Workshop2.2/02_28_16_14.ply',
+                        path_output='/home/yashas/Term2/Workshop2.2/',
+                        output=True,
+                        num_shards=74,
+                        vis=True,
+                        ground_plane_threshold=0.002,
+                        cluster_eps=0.01,
+                        cluster_min_points=300,
+                        cluster_plane_threshold=0.002)
 
     # segment_shards_cuda(input_path='/home/yashas/Term2/Workshop2.2/02_28_16_01.ply',
     #                     path_output='/home/yashas/Term2/Workshop2.2/',
