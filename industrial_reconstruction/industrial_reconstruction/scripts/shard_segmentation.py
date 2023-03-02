@@ -39,7 +39,8 @@ def segment_shards(input_path: str,
 
     # segment ground plane
     # ----------------
-    plane, pcd, pq = segment_plane(pcd, ground_plane_threshold)
+    # pcd to pd not to avoid plane segmentation
+    plane, pd, pq = segment_plane(pcd, ground_plane_threshold)
     if output:
         log = {'shards': {'ground_plane': {}}}
         log['shards']['ground_plane'] = pq
@@ -368,10 +369,10 @@ def segment_shards_cuda(input_path: str,
 
 if __name__ == '__main__':
 
-    segment_shards(input_path='/home/yashas/Term2/Workshop2.2/03_02_14_59.ply',
+    segment_shards(input_path='/home/yashas/Term2/Workshop2.2/03_02_18_02.ply',
                    path_output='/home/yashas/Term2/Workshop2.2/',
                    output=True,
-                   num_shards=52,
+                   num_shards=48,
                    vis=True,
                    ground_plane_threshold=0.002,
                    cluster_eps=0.01,
