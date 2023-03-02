@@ -1,6 +1,6 @@
 #GH generated yaml
 
-## Test Toolpath 1
+##  Toolpath for scanning pieces of a mosaic
 
 path:
  - pose_id: 0
@@ -65,4 +65,28 @@ path:
 #    quaternion: [1.0, 0.0, 0.0, 0.0]
 #  - pose_id: 20
 #    position: [0.90, 0.45, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+
+
+
+
+# ## Toolpath for scanning tile
+# path:
+#  - pose_id: 0
+#    position: [0.90, -0.15, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+#  - pose_id: 1
+#    position: [0.90, 0.15, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+#  - pose_id: 2
+#    position: [1.05, 0.15, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+#  - pose_id: 3
+#    position: [1.05, -0.15, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+#  - pose_id: 4
+#    position: [1.20, -0.15, 0.08]
+#    quaternion: [1.0, 0.0, 0.0, 0.0]
+#  - pose_id: 5
+#    position: [1.20, 0.15, 0.08]
 #    quaternion: [1.0, 0.0, 0.0, 0.0]
