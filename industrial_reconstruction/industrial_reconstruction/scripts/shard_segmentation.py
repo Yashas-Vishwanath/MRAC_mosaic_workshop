@@ -368,10 +368,10 @@ def segment_shards_cuda(input_path: str,
 
 if __name__ == '__main__':
 
-    segment_shards(input_path='/home/yashas/Term2/Workshop2.2/02_28_15_08.ply',
+    segment_shards(input_path='/home/yashas/Term2/Workshop2.2/03_02_14_59.ply',
                    path_output='/home/yashas/Term2/Workshop2.2/',
                    output=True,
-                   num_shards=90,
+                   num_shards=52,
                    vis=True,
                    ground_plane_threshold=0.002,
                    cluster_eps=0.01,
